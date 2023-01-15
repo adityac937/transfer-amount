@@ -1,0 +1,42 @@
+<div>
+    <h1>Add a Task</h1>
+    <div class="card clear-margin-l">
+        <input type="text" class="font-control" placeholder="Add Task Name" [(ngModel)]="name" />
+        <p *ngIf="showDuplicateNameError" class="text-small text-danger font-weight-600">Task with same name already Exists!</p>
+        <div class="mt-8">
+            <button class="btn btn-primary" (click)="saveTitle()">Add Task</button>
+        </div>
+    </div>
+</div>
+<div>
+    <h1>Pending Tasks</h1>
+    <div class="d-flex flex-column  justify-content-center p-16 align-items-center" *ngIf="pendingTasks.length == 0">
+        <img src="../../assets/images/no-tasks-found.jpg" alt="No Tasks Found" height="120" width="120">
+        <p class="mt-8 text-secondary">
+            No Pending Tasks Found
+        </p>
+    </div>
+    <div class="card" *ngFor="let task of pendingTasks;first as isFirst">
+        <p>{{task.name}}</p>
+        <div class="mt-8 d-flex align-items-center">
+            <button class="btn btn-success" (click)="completeTask(task)">Mask as Completed</button>
+            <button class="btn btn-danger ml-8" (click)="deleteTask(task)">Delete Task</button>
+        </div>
+    </div>
+</div>
+<div>
+    <h1>Completed Tasks</h1>
+    <div class="d-flex flex-column  justify-content-center p-16 align-items-center" *ngIf="completedTasks.length == 0">
+        <img src="../../assets/images/no-tasks-found.jpg" alt="No Tasks Found" height="120" width="120">
+        <p class="mt-8 text-secondary">
+            No Completed Tasks Found
+        </p>
+    </div>
+    <div *ngFor="let task of completedTasks;first as isFirst" class="card">
+        <p>{{task.name}}</p>
+        <div class="mt-8 d-flex align-items-center">
+            <button class="btn btn-success" (click)="inCompleteTask(task)">Mask as Incomplete</button>
+            <button class="btn btn-danger ml-8" (click)="deleteTask(task)">Delete Task</button>
+        </div>
+    </div>
+</div>
