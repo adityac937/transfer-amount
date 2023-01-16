@@ -36,7 +36,7 @@
             No Completed Tasks Found
         </p>
     </div>
-    <div *ngFor="let task of completedTasks;first as isFirst" class="card">
+    <div *ngFor="let task of completedTasks;first as isFirst" class="card bg-light-green">
         <p class="text-truncate" title="{{task.name}}">{{task.name}}</p>
         <div class="mt-8 d-flex align-items-center">
             <button class="btn btn-success" (click)="inCompleteTask(task)">Mask as Incomplete</button>
