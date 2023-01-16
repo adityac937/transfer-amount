@@ -4,6 +4,7 @@
         <div class="card">
             <input type="text" class="font-control" placeholder="Add Task Name" [(ngModel)]="name" />
             <p *ngIf="showDuplicateNameError" class="text-small text-danger font-weight-600">Task with same name already Exists!</p>
+            <p *ngIf="nullNameError" class="text-small text-danger font-weight-600">Please Enter the name</p>
             <div class="mt-8">
                 <button class="btn btn-primary" (click)="saveTitle()">Add Task</button>
             </div>

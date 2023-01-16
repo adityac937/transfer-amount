@@ -13,12 +13,14 @@ export class DashboardComponent implements OnInit, AfterContentInit {
     pendingTasks = [];
     completedTasks = [];
     taskCompleted: boolean = false;
+    nullNameError: boolean = false;
     showDuplicateNameError: boolean = false;
 
     constructor(private localStorageService: LocalStorageService) { }
 
     ngOnInit() {
         this.alltasks = this.localStorageService.getAllObjects();
+        this.name = '';
     }
 
     ngAfterContentInit() {
@@ -32,19 +34,24 @@ export class DashboardComponent implements OnInit, AfterContentInit {
 
     saveTitle() {
         this.name = this.name.trim();
-        if (this.alltasks.length) {
+        if (this.name.length === 0) {
+            this.nullNameError = true
+        }
+        else {
+            this.nullNameError = false;
             this.alltasks.forEach(t => {
                 this.allTasksName.push(t.name)
             })
-        }
-        if (!(this.allTasksName.includes(this.name))) {
-            this.showDuplicateNameError = false;
-            this.localStorageService.setItem(this.name, this.taskCompleted)
-            this.name = ''
-            this.alltasks.push({ name: this.name, status: this.taskCompleted })
-            this.buildTasksByCategory();
-        } else {
-            this.showDuplicateNameError = true;
+            if (!(this.allTasksName.includes(this.name))) {
+                this.nullNameError = false;
+                this.showDuplicateNameError = false;
+                this.localStorageService.setItem(this.name, this.taskCompleted)
+                this.alltasks.push({ name: this.name, status: this.taskCompleted })
+                this.name = ''
+                this.buildTasksByCategory();
+            } else {
+                this.showDuplicateNameError = true;
+            }
         }
     }
 
@@ -70,7 +77,6 @@ export class DashboardComponent implements OnInit, AfterContentInit {
     deleteAllTasks() {
         this.localStorageService.clearLocalStorage();
         this.alltasks = this.localStorageService.getAllObjects();
-
         this.buildTasksByCategory()
     }
 
