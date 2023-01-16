@@ -19,7 +19,6 @@ export class DashboardComponent implements OnInit, AfterContentInit {
 
     ngOnInit() {
         this.alltasks = this.localStorageService.getAllObjects();
-
     }
 
     ngAfterContentInit() {
@@ -32,6 +31,7 @@ export class DashboardComponent implements OnInit, AfterContentInit {
     }
 
     saveTitle() {
+        this.name = this.name.trim();
         if (this.alltasks.length) {
             this.alltasks.forEach(t => {
                 this.allTasksName.push(t.name)
@@ -40,6 +40,7 @@ export class DashboardComponent implements OnInit, AfterContentInit {
         if (!(this.allTasksName.includes(this.name))) {
             this.showDuplicateNameError = false;
             this.localStorageService.setItem(this.name, this.taskCompleted)
+            this.name = ''
             this.alltasks.push({ name: this.name, status: this.taskCompleted })
             this.buildTasksByCategory();
         } else {
@@ -66,8 +67,11 @@ export class DashboardComponent implements OnInit, AfterContentInit {
         this.buildTasksByCategory();
     }
 
-    checkDuplicateName() {
+    deleteAllTasks() {
+        this.localStorageService.clearLocalStorage();
+        this.alltasks = this.localStorageService.getAllObjects();
 
+        this.buildTasksByCategory()
     }
 
     buildPendingTasks() {

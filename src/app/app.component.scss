@@ -16,15 +16,30 @@ h1 {
 }
 
 .card {
-  margin: 12px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  margin-right: 12px;
   border: 1px solid lightseagreen;
   padding: 12px;
   border-radius: 4px;
   display: inline-block;
+  @extend .w-300;
 
   &.clear-margin-l {
     margin-left: 0;
   }
+
+}
+
+.w-300 {
+  width: 300px;
+}
+
+.text-truncate {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
 
 .d-flex {
@@ -33,6 +48,10 @@ h1 {
 
 .align-items-center {
   align-items: center;
+}
+
+.justify-content-between {
+  justify-content: space-between;
 }
 
 .font-control {

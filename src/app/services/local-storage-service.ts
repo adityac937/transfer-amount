@@ -42,4 +42,8 @@ export class LocalStorageService {
         }
         return allObjects;
     }
+
+    clearLocalStorage() {
+        return localStorage.clear();
+    }
 }
