@@ -20,7 +20,7 @@
             No Pending Tasks Found
         </p>
     </div>
-    <div class="card" *ngFor="let task of pendingTasks;first as isFirst">
+    <div class="card w-300" *ngFor="let task of pendingTasks;first as isFirst">
         <p class="text-truncate" title="{{task.name}}">{{task.name}}</p>
         <div class="mt-8 d-flex align-items-center">
             <button class="btn btn-success" (click)="completeTask(task)">Mask as Completed</button>
@@ -36,7 +36,7 @@
             No Completed Tasks Found
         </p>
     </div>
-    <div *ngFor="let task of completedTasks;first as isFirst" class="card bg-light-green">
+    <div *ngFor="let task of completedTasks;first as isFirst" class="card bg-light-green w-300">
         <p class="text-truncate" title="{{task.name}}">{{task.name}}</p>
         <div class="mt-8 d-flex align-items-center">
             <button class="btn btn-success" (click)="inCompleteTask(task)">Mask as Incomplete</button>
