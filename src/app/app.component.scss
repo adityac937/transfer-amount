@@ -9,3 +9,44 @@
 body {
   padding: 16px;
 }
+
+.topnav {
+
+  ul {
+    height: 100%;
+    @extend .d-flex;
+    @extend .justify-content-end;
+
+    li {
+      list-style: none;
+
+      a {
+        border: 1px solid lightgray;
+        border-radius: 28px;
+        padding: 4px 16px;
+        font-size: small;
+        cursor: pointer;
+
+        &:hover {
+          box-shadow: 2px 3px 12px -2px lightskyblue;
+        }
+      }
+    }
+  }
+}
+
+.d-flex {
+  display: flex;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.justify-content-end {
+  justify-content: end;
+}
+
+.align-items-center {
+  align-items: center;
+}
